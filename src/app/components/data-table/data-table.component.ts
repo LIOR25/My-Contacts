@@ -16,6 +16,8 @@ export class DataTableComponent implements OnInit {
 
   ngOnInit() {
     this.contacts = this.store.select(fromContact.selectAll)
+    console.log(this.contacts);
+    
     this.store.dispatch(new actions.Query());
     this.contacts.subscribe((contacts) => console.log("Contacts", contacts));
     // console.log('Contacts', this.contacts);

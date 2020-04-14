@@ -57,12 +57,19 @@ export interface State extends EntityState<Contact> {}
 
 export const initialState: State = contactAdapter.getInitialState();
 
-
 export function contactReducer(
   state: State = initialState,
   action: actions.ContactActions
 ) {
   switch (action.type) {
+    case actions.ADDED:
+      console.log(actions.ADDED);
+      console.log(action.payload);
+            console.log(state);
+
+      
+      
+      return contactAdapter.addOne(action.payload, state);
     case actions.ADD_ALL:
       return contactAdapter.addAll(action.contacts, state);
     case actions.MODIFIED:
@@ -84,11 +91,11 @@ export function contactReducer(
 
 // Create the default selectors
 
-export const getContactState = createFeatureSelector<State>('contact');
+export const getContactState = createFeatureSelector<State>("contact");
 
 export const {
-    selectIds,
-    selectEntities,
-    selectAll,
-    selectTotal,
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal,
 } = contactAdapter.getSelectors(getContactState);
