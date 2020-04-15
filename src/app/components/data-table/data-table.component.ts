@@ -10,7 +10,8 @@ import { Observable } from 'rxjs';
   styleUrls: ["./data-table.component.scss"],
 })
 export class DataTableComponent implements OnInit {
-  // displayedColumns = ["name", "city", "email", "actions"];
+  displayedColumns = ["name", "city", "email", "actions"];
+
   contacts: Observable<any>;
   constructor(private store: Store<fromContact.State>) {}
 
@@ -19,8 +20,6 @@ export class DataTableComponent implements OnInit {
     console.log(this.contacts);
     
     this.store.dispatch(new actions.Query());
-    this.contacts.subscribe((contacts) => console.log("Contacts", contacts));
-    // console.log('Contacts', this.contacts);
   }
 
   // updateContact(id,name,email,city) {
