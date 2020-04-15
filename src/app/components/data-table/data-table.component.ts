@@ -22,9 +22,9 @@ export class DataTableComponent implements OnInit {
     this.store.dispatch(new actions.Query());
   }
 
-  // updateContact(id,name,email,city) {
-  //   this.store.dispatch( new actions.Update(id, {name: name, email: email, city: city}))
-  // }
+  updateContact(id,name,email,city) {
+    this.store.dispatch( new actions.Update(id, {name: name, email: email, city: city}))
+  }
 
   // deleteContact(id) {
   //   this.store.dispatch(new actions.Delete(id))
