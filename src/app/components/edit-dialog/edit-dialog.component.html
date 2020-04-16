@@ -1,0 +1,14 @@
+<mat-form-field>
+<input matInput type="text" [(ngModel)]='newEmail' placeholder="Update email">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]='newName' placeholder="Update name">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input matInput type="text" [(ngModel)]='newCity' placeholder="Update city">
+    </mat-form-field>
+
+
+    <button mat-raised-button (click)= 'updateEmail()'>Save</button>

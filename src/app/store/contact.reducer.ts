@@ -63,12 +63,6 @@ export function contactReducer(
 ) {
   switch (action.type) {
     case actions.ADDED:
-      console.log(actions.ADDED);
-      console.log(action.payload);
-            console.log(state);
-
-      
-      
       return contactAdapter.addOne(action.payload, state);
     case actions.ADD_ALL:
       return contactAdapter.addAll(action.contacts, state);
@@ -83,6 +77,8 @@ export function contactReducer(
 
     case actions.REMOVED:
       return contactAdapter.removeOne(action.payload.id, state);
+    case actions.DELETE:
+          return contactAdapter.removeOne(action.id, state);
 
     default:
       return state;

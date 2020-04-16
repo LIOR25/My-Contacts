@@ -26,43 +26,52 @@ import { Observable } from "rxjs";
 
 @Injectable()
 export class ContactEffects {
- 
-    @Effect()
-    query$: Observable<Action> = this.actions$.pipe(
-      ofType(ContactActions.QUERY),
-      switchMap((action) => {
-        console.log(action);
-        return this.firestore
-          .collection<Contact>("contacts", (ref) => {
-            console.log(ref);
-            return ref;
-          })
-          .stateChanges();
-      }),
-      mergeMap((actions) => actions),
-      map((action) => {
-        console.log(action.payload.doc.data());
-        return {
-          type: `[Contacts] ${action.type}`,
-          payload: {
-            ...action.payload.doc.data(),
-            id: action.payload.doc.id,
-          },
-        };
-      })
-    );
+  @Effect()
+  query$: Observable<Action> = this.actions$.pipe(
+    ofType(ContactActions.QUERY),
+    switchMap((action) => {
+      console.log(action);
+      return this.firestore
+        .collection<Contact>("contacts", (ref) => {
+          console.log(ref);
+          return ref;
+        })
+        .stateChanges();
+    }),
+    mergeMap((actions) => actions),
+    map((action) => {
+      console.log(action.payload.doc.data());
+      return {
+        type: `[Contacts] ${action.type}`,
+        payload: {
+          ...action.payload.doc.data(),
+          id: action.payload.doc.id,
+        },
+      };
+    })
+  );
 
-
-
-    @Effect()
-    update$: Observable<Action> = this.actions$.pipe(ofType(ContactActions.UPDATE),
+  @Effect()
+  update$: Observable<Action> = this.actions$.pipe(
+    ofType(ContactActions.UPDATE),
     map((action: ContactActions.Update) => action),
-    switchMap(date => {
-      const ref = this.firestore.doc<Contact>(`contacts/${date.id}`)
-      return Observable.fromPromise(ref.update(date.changes))
+    switchMap((date) => {
+      const ref = this.firestore.doc<Contact>(`contacts/${date.id}`);
+      return Observable.fromPromise(ref.update(date.changes));
     }),
     map(() => new ContactActions.Success())
-    )
+  );
+
+  // @Effect()
+  // delete$: Observable<Action> = this.actions$.pipe(
+  //   ofType(ContactActions.REMOVED),
+  //   map((action: ContactActions.Removed) => action),
+  //   switchMap((date) => {
+  //     const ref = this.firestore.doc<Contact>(`contacts/${date.payload.id}`);
+  //     return Observable.fromPromise(ref.remove(date));
+  //   }),
+  //   map(() => new ContactActions.Success())
+  // );
 
   constructor(private actions$: Actions, private firestore: AngularFirestore) {}
 }

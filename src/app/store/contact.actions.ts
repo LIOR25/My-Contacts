@@ -3,7 +3,7 @@ import { Contact } from "./contact.reducer";
 
 // export const CREATE = "[Contacts] Create";
 // export const UPDATE = "[Contacts] Update";
-// export const DELETE = "[Contacts] Delete";
+export const DELETE = "[Contacts] Delete";
 
 // export class Create implements Action {
 //   readonly type = CREATE;
@@ -15,10 +15,10 @@ import { Contact } from "./contact.reducer";
 //   constructor(public id: string, public changes: Partial<Contact>) {}
 // }
 
-// export class Delete implements Action {
-//   readonly type = DELETE;
-//   constructor(public id: string) {}
-// }
+export class Delete implements Action {
+  readonly type = DELETE;
+  constructor(public id: string) {}
+}
 
 // export type ContactActions = Create | Update | Delete;
 
@@ -58,6 +58,10 @@ export class Removed implements Action {
   constructor(public payload?: Contact) {}
 }
 
+
+
+
+
 export class Update implements Action {
   readonly type = UPDATE;
   constructor(public id: string, public changes: Partial<Contact>) {}
@@ -75,4 +79,5 @@ export type ContactActions =
   | Removed
   | Success
   | Added
-  | AddAll;
+  | AddAll
+  | Delete;

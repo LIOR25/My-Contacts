@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+
+import { NgModule } from '@angular/core';
+import { AppRoutingModule } from './app-routing.module';
 import { MaterialModule } from './shared/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms"
@@ -21,6 +21,7 @@ import { MainContentComponent } from './components/main-content/main-content.com
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     SidenavComponent,
     ToolbarComponent,
     DataTableComponent,
+    EditDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,5 +47,6 @@ import { DataTableComponent } from './components/data-table/data-table.component
   ],
   providers: [],
   bootstrap: [AppComponent],
+  entryComponents: [EditDialogComponent],
 })
 export class AppModule {}

@@ -7,6 +7,9 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatListModule } from "@angular/material/list";
 import { MatTableModule } from "@angular/material/table";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatInputModule } from "@angular/material/input";
+import { MatFormFieldModule } from "@angular/material/form-field";
 
 
 
@@ -21,6 +24,9 @@ import { MatTableModule } from "@angular/material/table";
     MatToolbarModule,
     MatListModule,
     MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   imports: [
     CommonModule,
@@ -31,6 +37,9 @@ import { MatTableModule } from "@angular/material/table";
     MatToolbarModule,
     MatListModule,
     MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
 })
 export class MaterialModule {}
