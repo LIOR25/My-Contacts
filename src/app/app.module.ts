@@ -12,9 +12,7 @@ import { contactReducer } from './store/contact.reducer';
 import { EffectsModule } from "@ngrx/effects";
 import { ContactEffects } from './store/contact.effects';
 
-import { environment } from "src/environments/environment";
-import { AngularFireModule } from "@angular/fire";
-import { AngularFirestoreModule } from "@angular/fire/firestore";
+
 
 import { AppComponent } from './app.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
@@ -22,6 +20,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
+import { AngularfireModule } from './angularfire.module';
 
 @NgModule({
   declarations: [
@@ -37,10 +36,10 @@ import { EditDialogComponent } from './components/edit-dialog/edit-dialog.compon
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
+    AngularfireModule,
     FlexLayoutModule,
     FormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule,
+   
     StoreModule.forRoot({ contact: contactReducer }),
     EffectsModule.forRoot([ContactEffects]),
     // EffectsModule.forFeature([ContactEffects]),
