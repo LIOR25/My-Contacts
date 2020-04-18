@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl, NgForm, Form } from "@angular/forms";
-import { AuthService } from './auth.service';
+import { AuthService } from "./auth.service";
 
 @Component({
   selector: "auth",
@@ -9,6 +9,7 @@ import { AuthService } from './auth.service';
 })
 export class AuthComponent implements OnInit {
   isLoginMode = true;
+  isLoading = false;
 
   //   form: FormGroup = new FormGroup({
   //     email: new FormControl(""),
@@ -28,19 +29,21 @@ export class AuthComponent implements OnInit {
     }
     const email = form.value.email;
     const password = form.value.password;
-
-    if(this.isLoginMode) {
+    this.isLoading = true;
+    if (this.isLoginMode) {
       // ....
-    }else {
-
-      this.authService.singup(email,password).subscribe(resData => {
-        console.log(resData);
-      }, error => {
-      console.log(error);
-      
-      });
+    } else {
+      this.authService.singup(email, password).subscribe(
+        (resData) => {
+          console.log(resData);
+          this.isLoading = false;
+        },
+        (error) => {
+          console.log(error);
+          this.isLoading = false;
+        }
+      );
     }
-
 
     form.reset();
   }

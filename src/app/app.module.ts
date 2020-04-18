@@ -26,6 +26,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { AngularfireModule } from './modules/angularfire.module';
 import { AuthComponent } from './auth/auth.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { AuthComponent } from './auth/auth.component';
     DataTableComponent,
     EditDialogComponent,
     AuthComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,
