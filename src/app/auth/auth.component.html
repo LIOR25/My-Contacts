@@ -10,18 +10,15 @@
                     <input type="email" id="email" ngModel name="email" reauired email matInput placeholder="Email">
                 </mat-form-field>
             </p>
-
             <p>
                 <mat-form-field>
                     <input type="password" id="password" ngModel name="password" reauired minlength="6" matInput
                         placeholder="Password">
                 </mat-form-field>
             </p>
-
             <p *ngIf="error" class="error">
                 {{ error }}
             </p>
-
             <div class="button">
                 <button type="button" mat-raised-button color="primary" (click)="onSwitchMode()">Switch to
                     {{isLoginMode ? 'Sign Up' : 'Login'}} </button>
@@ -29,7 +26,6 @@
                 <button type="submit" [disabled]="!authForm.valid" mat-raised-button
                     color="primary">{{isLoginMode ? 'Login' : 'Sign Up'}}</button>
             </div>
-
         </form>
     </mat-card-content>
 </mat-card>
