@@ -4,6 +4,8 @@ import { AppComponent } from './app.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { AuthComponent } from './auth/auth.component';
+import { SidenavComponent } from './components/sidenav/sidenav.component';
 
 
 const routes: Routes = [
@@ -12,9 +14,12 @@ const routes: Routes = [
   //   component: ToolbarComponent,
   //   children: [{ path: "", component: MainContentComponent }],
   // },
+  { path: "sidenav", component: SidenavComponent },
 
-  { path: "database", component: DataTableComponent },
+  { path: "database", component: SidenavComponent },
   { path: "authentication", component: MainContentComponent },
+  { path: "auth", component: AuthComponent },
+
   { path: "", redirectTo: "database", pathMatch: "full" },
 ];
 

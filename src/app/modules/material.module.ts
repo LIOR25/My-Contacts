@@ -10,6 +10,7 @@ import { MatTableModule } from "@angular/material/table";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatCardModule } from "@angular/material/card";
 
 
 
@@ -27,6 +28,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCardModule,
   ],
   imports: [
     CommonModule,
@@ -40,6 +42,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
+    MatCardModule,
   ],
 })
 export class MaterialModule {}
