@@ -1,19 +1,35 @@
-// import express from 'express';
 const express = require('express')
-
-// import cors from 'cors';
-// import bodyParser from 'body-parser';
-
+var cors = require('cors')
+var bodyParser = require('body-parser')
 
 
 const app = express();
-// const router = express.Router();
+const router = express.Router();
 
-// app.use(cors());
-// app.use(bodyParser.json());
+app.use(cors());
+app.use(bodyParser.json());
 
 
-// app.use('/' , router);
-app.get('/',(req,res) => res.send('hello'));
+// const {Firestore} = require('@google-cloud/firestore');
+// const firestore = new Firestore();
 
-app.listen(4000, () => console.log('Express server runing on poer 4000'));
+const admin = require('firebase-admin');
+const serviceAccount = require('./serviceAccountKey.json');
+admin.initializeApp({
+    credenital: admin.credential.cert(serviceAccount)
+});
+const firestore = admin.firestore();
+
+
+firestore.listCollections().then(collections => {
+  for (let collection of collections) {
+    console.log(`Found collection with id: ${collection.id}`);
+  }
+});
+
+
+
+app.use('/' , router);
+// app.get('/',(req,res) => res.send('hello'));
+
+app.listen(4000, () => console.log('Express server runing on port 4000'));
