@@ -7,6 +7,8 @@ import { MaterialModule } from './modules/material.module';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { FormsModule } from "@angular/forms"
 import { ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+
 
 import { from } from 'rxjs';
 import { StoreModule } from "@ngrx/store";
@@ -44,6 +46,7 @@ import { AuthComponent } from './auth/auth.component';
     FlexLayoutModule,
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
 
     StoreModule.forRoot({ contact: contactReducer }),
     EffectsModule.forRoot([ContactEffects]),
