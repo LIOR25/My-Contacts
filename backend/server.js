@@ -18,14 +18,49 @@ const serviceAccount = require('./serviceAccountKey.json');
 admin.initializeApp({
     credenital: admin.credential.cert(serviceAccount)
 });
-const firestore = admin.firestore();
+// const firestore = admin.firestore();
+
+const db = admin.firestore();
+const contactsCollection = db.collection('contacts');
 
 
-firestore.listCollections().then(collections => {
-  for (let collection of collections) {
-    console.log(`Found collection with id: ${collection.id}`);
-  }
+//this route serves all the users 
+router.get("/contacts",(req, res ,next) =>{
+    //get the collection in the database
+    //I am storing them in an array
+    let allUsers = [];
+    //this is the get for the users in firestore
+    contactsCollection.get()
+    .then(snapshot => {
+        //for each document return the data
+        snapshot.forEach(doc => {
+             allUsers.push({
+                "docID" : doc.id,
+                "userData": doc.data()
+                });
+        });
+       //respond with the array created
+       //as json
+       res.json({
+           "statusCode": "200",
+           "statusReponse": "Ok",
+           "message": "All users",
+           "data" : allUsers
+       })
+    })
+    .catch(err => {
+        console.log('Error getting documents', err);
+    });
+
+    
 });
+
+
+// firestore.listCollections().then(collections => {
+//   for (let collection of collections) {
+//     console.log(`Found collection with id: ${collection.id}`);
+//   }
+// });
 
 
 
