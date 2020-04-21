@@ -15,8 +15,11 @@ app.use(bodyParser.json());
 
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
+//  console.log(serviceAccount)
+
 admin.initializeApp({
-    credenital: admin.credential.cert(serviceAccount)
+    credenital: admin.credential.cert(serviceAccount),
+    databaseURL: "https://my-contacts2.firebaseio.com"
 });
 // const firestore = admin.firestore();
 

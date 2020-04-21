@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from "rxjs";
+import { AngularFireFunctions } from "@angular/fire/functions";
 
 import {
   AngularFirestore,
@@ -22,43 +23,39 @@ export interface Item {
 @Component({
   selector: "app-main-content",
   templateUrl: "./main-content.component.html",
+  // template: `{{ data$  | async }}`,
   styleUrls: ["./main-content.component.scss"],
 })
 export class MainContentComponent implements OnInit {
-
   displayedColumns = ["name", "actions"];
   // family: Observable<any>;
+  data$: Observable<any>;
   private itemsCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
-  constructor(private firestore: AngularFirestore) {
+  constructor(
+    private firestore: AngularFirestore,
+    private fns: AngularFireFunctions
+  ) {
+    // const callable = fns.httpsCallable("");
+    // this.data$ = callable({ name: " 'some-data' " });
+    // console.log(this.data$);
+    
   }
 
-
   ngOnInit(): void {
-
-
-
-
     // const contactsRef = this.firestore.collection("contacts");
     //  const familyRef = contactsRef.doc('').collection("family").valueChanges();
     //       const faRef = contactsRef
     //         .doc("")
     //         .collection("family")
     //         .valueChanges();
-
     // console.log(familyRef);
-
     // const combinedList = combineLatest<any[]>(familyRef, faRef).pipe(
     //   map((arr) => arr.reduce((acc, cur) => acc.concat(cur)))
     // );
-
-
-
-
     // this.itemsCollection = this.firestore.collection("family", (ref) => {
     //   return ref;
     // });
-
     // this.items = this.itemsCollection.snapshotChanges().pipe(
     //   map((changes) =>
     //     changes.map((a) => {
@@ -68,18 +65,13 @@ export class MainContentComponent implements OnInit {
     //     })
     //   )
     // );
-
-
-
-
-
-  //   this.family = this.firestore.collection("family").valueChanges();
-  //   this.items = this.firestore
-  //     .collection("contacts")
-  //     .doc("name")
-  //     .collection("family")
-  //     .doc("name")
-  //     .valueChanges()
-  //     console.log(this.items, 'this');
+    //   this.family = this.firestore.collection("family").valueChanges();
+    //   this.items = this.firestore
+    //     .collection("contacts")
+    //     .doc("name")
+    //     .collection("family")
+    //     .doc("name")
+    //     .valueChanges()
+    //     console.log(this.items, 'this');
   }
 }
