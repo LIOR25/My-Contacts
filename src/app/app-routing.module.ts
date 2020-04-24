@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
+import { DatabaseComponent } from "./components/database/database.component";
 import { AuthComponent } from './auth/auth.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 

@@ -22,11 +22,12 @@ import { AppComponent } from './app.component';
 import { MainContentComponent } from './components/main-content/main-content.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
-import { DataTableComponent } from './components/data-table/data-table.component';
+import { DatabaseComponent } from "./components/database/database.component";
 import { EditDialogComponent } from './components/edit-dialog/edit-dialog.component';
 import { AngularfireModule } from './modules/angularfire.module';
 import { AuthComponent } from './auth/auth.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { DataTableComponent } from "./components/data-table/data-table.component";
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     EditDialogComponent,
     AuthComponent,
     LoadingSpinnerComponent,
+    DatabaseComponent,
   ],
   imports: [
     BrowserModule,
