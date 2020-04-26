@@ -9,23 +9,15 @@ const router = express.Router();
 app.use(cors());
 app.use(bodyParser.json());
 
-
-// const {Firestore} = require('@google-cloud/firestore');
-// const firestore = new Firestore();
-
 const admin = require('firebase-admin');
 const serviceAccount = require('./serviceAccountKey.json');
-//  console.log(serviceAccount)
 
 admin.initializeApp({
-    credenital: admin.credential.cert(serviceAccount),
-    databaseURL: "https://my-contacts2.firebaseio.com"
+    credential: admin.credential.cert(serviceAccount),
 });
-// const firestore = admin.firestore();
 
 const db = admin.firestore();
 const contactsCollection = db.collection('contacts');
-
 
 //this route serves all the users 
 router.get("/contacts",(req, res ,next) =>{
@@ -59,11 +51,11 @@ router.get("/contacts",(req, res ,next) =>{
 });
 
 
-// firestore.listCollections().then(collections => {
-//   for (let collection of collections) {
-//     console.log(`Found collection with id: ${collection.id}`);
-//   }
-// });
+db.listCollections().then(collections => {
+  for (let collection of collections) {
+    console.log(`Found collection with id: ${collection.id}`);
+  }
+});
 
 
 
