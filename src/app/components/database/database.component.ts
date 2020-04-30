@@ -6,7 +6,7 @@ import { Observable } from "rxjs";
 import { EditDialogComponent } from '../edit-dialog/edit-dialog.component';
 
 import { Contact } from "../../store/contact.reducer";
-import { mergeMap, map } from 'rxjs/operators';
+import { mergeMap, map, tap } from 'rxjs/operators';
 
 import {
   AngularFirestore,
@@ -33,16 +33,20 @@ export interface Item {
   styleUrls: ["./database.component.scss"],
 })
 export class DatabaseComponent implements OnInit {
-  columnHeader = ["name", "city", "email", "actions"];
+  // columnHeader = ["name", "city", "email", "actions"];
+
+  columnHeader = {
+    name: "name",
+    city: "city",
+    email: "email",
+    id: "id",
+    actions: 'actions',
+  };
   // tableData : [] = [];
   // displayedColumns = ["name", "city", "email", "actions"];
 
   contacts: Observable<any>;
   contacDoc: AngularFirestoreDocument<Contact>;
-
-
-  
-
 
   private itemsCollection: AngularFirestoreCollection<Item>;
   items: Observable<Item[]>;
@@ -51,27 +55,27 @@ export class DatabaseComponent implements OnInit {
     private store: Store<fromContact.State>,
     private firestore: AngularFirestore,
     public dialog: MatDialog
-  ) { }
+  ) {}
 
   ngOnInit() {
     // this.contacts = this.store.select(fromContact.selectAll);
     // this.store.dispatch(new actions.Query());
-    
+    console.log("RUNNING");
     this.itemsCollection = this.firestore.collection("contacts", (ref) => {
       return ref;
     });
-    
+
     this.items = this.itemsCollection.snapshotChanges().pipe(
       map((changes) =>
-      changes.map((a) => {
-        const data = a.payload.doc.data() as Item;
-        data.id = a.payload.doc.id;
-        console.log(data);
-        return data;
-      })
-      )
-      );
-    }
+        changes.map((a) => {
+          const data = a.payload.doc.data() as Item;
+          data.id = a.payload.doc.id;
+          return data;
+        })
+      ),
+      tap((data) => console.log(data))
+    );
+  }
 
   // columnHeader = {
   //   studentID: "ID",
